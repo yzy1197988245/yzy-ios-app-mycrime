@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MyCrime.h"
 
 @interface AppDelegate ()
 
@@ -14,9 +15,25 @@
 
 @implementation AppDelegate
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        _crimeLab = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i<100; i++) {
+            MyCrime *crime = [[MyCrime alloc] init];
+            crime.title = [NSString stringWithFormat:@"MyCrime #%@",@(i)];
+            crime.isChecked = i % 2;
+            crime.date = [NSDate date];
+            [_crimeLab addObject:crime];
+        }
+    }
+    return self;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:self.window.rootViewController];
+    self.window.rootViewController = controller;
     return YES;
 }
 

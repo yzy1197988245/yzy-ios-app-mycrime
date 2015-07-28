@@ -14,6 +14,11 @@
 		6A401CF61B6607CC003E35F8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A401CF51B6607CC003E35F8 /* Images.xcassets */; };
 		6A401CF91B6607CC003E35F8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A401CF71B6607CC003E35F8 /* LaunchScreen.xib */; };
 		6A401D051B6607CC003E35F8 /* MyCrimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A401D041B6607CC003E35F8 /* MyCrimeTests.m */; };
+		6A401D1B1B660990003E35F8 /* MyCrime.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A401D1A1B660990003E35F8 /* MyCrime.m */; };
+		6A401D211B660CE5003E35F8 /* NSObject+MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A401D201B660CE5003E35F8 /* NSObject+MyApplication.m */; };
+		6A401D241B661199003E35F8 /* CrimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A401D231B661199003E35F8 /* CrimeTableViewCell.m */; };
+		6A401D271B661FA6003E35F8 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A401D261B661FA6003E35F8 /* DetailViewController.m */; };
+		6A4BF82D1B672881001FB9A4 /* DetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4BF82C1B672881001FB9A4 /* DetailCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +45,16 @@
 		6A401CFE1B6607CC003E35F8 /* MyCrimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyCrimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A401D031B6607CC003E35F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A401D041B6607CC003E35F8 /* MyCrimeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCrimeTests.m; sourceTree = "<group>"; };
+		6A401D191B660990003E35F8 /* MyCrime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCrime.h; sourceTree = "<group>"; };
+		6A401D1A1B660990003E35F8 /* MyCrime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCrime.m; sourceTree = "<group>"; };
+		6A401D1F1B660CE5003E35F8 /* NSObject+MyApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MyApplication.h"; sourceTree = "<group>"; };
+		6A401D201B660CE5003E35F8 /* NSObject+MyApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MyApplication.m"; sourceTree = "<group>"; };
+		6A401D221B661199003E35F8 /* CrimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrimeTableViewCell.h; sourceTree = "<group>"; };
+		6A401D231B661199003E35F8 /* CrimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrimeTableViewCell.m; sourceTree = "<group>"; };
+		6A401D251B661FA6003E35F8 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		6A401D261B661FA6003E35F8 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		6A4BF82B1B672881001FB9A4 /* DetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCell.h; sourceTree = "<group>"; };
+		6A4BF82C1B672881001FB9A4 /* DetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +96,10 @@
 		6A401CE71B6607CC003E35F8 /* MyCrime */ = {
 			isa = PBXGroup;
 			children = (
-				6A401CEC1B6607CC003E35F8 /* AppDelegate.h */,
-				6A401CED1B6607CC003E35F8 /* AppDelegate.m */,
-				6A401CEF1B6607CC003E35F8 /* ViewController.h */,
-				6A401CF01B6607CC003E35F8 /* ViewController.m */,
-				6A401CF21B6607CC003E35F8 /* Main.storyboard */,
-				6A401CF51B6607CC003E35F8 /* Images.xcassets */,
-				6A401CF71B6607CC003E35F8 /* LaunchScreen.xib */,
+				6A401D121B66086E003E35F8 /* Data */,
+				6A401D111B660830003E35F8 /* Resources */,
+				6A401D0F1B6607F4003E35F8 /* Main */,
+				6A401D0E1B6607D6003E35F8 /* Controller */,
 				6A401CE81B6607CC003E35F8 /* Supporting Files */,
 			);
 			path = MyCrime;
@@ -117,6 +129,51 @@
 				6A401D031B6607CC003E35F8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6A401D0E1B6607D6003E35F8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6A401CEF1B6607CC003E35F8 /* ViewController.h */,
+				6A401CF01B6607CC003E35F8 /* ViewController.m */,
+				6A401D221B661199003E35F8 /* CrimeTableViewCell.h */,
+				6A401D231B661199003E35F8 /* CrimeTableViewCell.m */,
+				6A401D251B661FA6003E35F8 /* DetailViewController.h */,
+				6A401D261B661FA6003E35F8 /* DetailViewController.m */,
+				6A4BF82B1B672881001FB9A4 /* DetailCell.h */,
+				6A4BF82C1B672881001FB9A4 /* DetailCell.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		6A401D0F1B6607F4003E35F8 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				6A401CEC1B6607CC003E35F8 /* AppDelegate.h */,
+				6A401CED1B6607CC003E35F8 /* AppDelegate.m */,
+				6A401D1F1B660CE5003E35F8 /* NSObject+MyApplication.h */,
+				6A401D201B660CE5003E35F8 /* NSObject+MyApplication.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		6A401D111B660830003E35F8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6A401CF21B6607CC003E35F8 /* Main.storyboard */,
+				6A401CF51B6607CC003E35F8 /* Images.xcassets */,
+				6A401CF71B6607CC003E35F8 /* LaunchScreen.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6A401D121B66086E003E35F8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				6A401D191B660990003E35F8 /* MyCrime.h */,
+				6A401D1A1B660990003E35F8 /* MyCrime.m */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +276,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A401D241B661199003E35F8 /* CrimeTableViewCell.m in Sources */,
 				6A401CF11B6607CC003E35F8 /* ViewController.m in Sources */,
+				6A4BF82D1B672881001FB9A4 /* DetailCell.m in Sources */,
 				6A401CEE1B6607CC003E35F8 /* AppDelegate.m in Sources */,
+				6A401D211B660CE5003E35F8 /* NSObject+MyApplication.m in Sources */,
+				6A401D1B1B660990003E35F8 /* MyCrime.m in Sources */,
 				6A401CEB1B6607CC003E35F8 /* main.m in Sources */,
+				6A401D271B661FA6003E35F8 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +480,7 @@
 				6A401D0A1B6607CC003E35F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6A401D0B1B6607CC003E35F8 /* Build configuration list for PBXNativeTarget "MyCrimeTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +489,7 @@
 				6A401D0D1B6607CC003E35F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
