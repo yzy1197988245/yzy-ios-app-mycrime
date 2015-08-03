@@ -212,9 +212,6 @@
                                 <date key="date" timeIntervalSinceReferenceDate="460258436.57027102">
                                     <!--2015-08-03 01:33:56 +0000-->
                                 </date>
-                                <connections>
-                                    <action selector="dateChanged:" destination="mio-aE-F33" eventType="valueChanged" id="u6t-Xe-q00"/>
-                                </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7W-8Y-OLz">
                                 <rect key="frame" x="16" y="562" width="30" height="30"/>
@@ -262,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iiO-Sv-Wnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="334" y="1716"/>
+            <point key="canvasLocation" x="983" y="1060"/>
         </scene>
     </scenes>
 </document>

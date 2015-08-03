@@ -17,19 +17,11 @@
 
 - (IBAction)cancleButtonClicked:(UIButton *)sender;
 - (IBAction)okButtonClicked:(UIButton *)sender;
-
-- (IBAction)dateChanged:(UIDatePicker *)sender;
-
 - (IBAction)todayButtonClicked:(UIButton *)sender;
 
 @end
 
 @implementation MyDatePickerDialogViewController
-
-- (void)setDateNow:(NSDate *)dateNow {
-    _dateNow = dateNow;
-    self.datePicker.date = dateNow;
-}
 
 - (void)setModalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle {
     if (modalPresentationStyle == UIModalPresentationCustom) {
@@ -55,14 +47,20 @@
 
 - (IBAction)okButtonClicked:(UIButton *)sender {
     self.dateNow = self.datePicker.date;
+    if (self.dateChangedDelegate) {
+        [self.dateChangedDelegate onDateChanged:self.dateNow];
+    }
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
-- (IBAction)dateChanged:(UIDatePicker *)sender {
-    self.dateNow = self.datePicker.date;
-//    NSLog(@"dateChanged");
-}
+
 
 - (IBAction)todayButtonClicked:(UIButton *)sender {
     self.dateNow = [NSDate date];
     self.datePicker.date = [NSDate date];
 }
+
+- (void)viewDidLoad {
+    self.datePicker.date = self.dateNow;
+}
 @end
+

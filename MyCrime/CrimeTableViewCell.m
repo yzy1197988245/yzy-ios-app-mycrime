@@ -24,7 +24,11 @@
     _crime = crime;
     self.title.text = crime.title;
     self.isChecked.on = crime.isChecked;
-    self.date.text = crime.date.description;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSString *dateString = [dateFormatter stringFromDate:crime.date];
+    self.date.text = dateString;
 }
 
 - (IBAction)switchClicked:(UISwitch *)sender {

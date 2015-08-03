@@ -9,7 +9,7 @@
 #import "DetailCell.h"
 #import "MyDatePickerDialogViewController.h"
 
-@interface DetailCell ()
+@interface DetailCell () <MyDateChangedDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
@@ -23,6 +23,17 @@
 @end
 
 @implementation DetailCell
+
+- (void)onDateChanged:(NSDate *)date {
+    if (self.crime.date.description != date.description) {
+        self.crime.date = date;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        NSString *dateString = [formatter stringFromDate:self.crime.date];
+        [self.dateButton setTitle:dateString forState:UIControlStateNormal];
+    }
+}
+
 - (void)setCrime:(MyCrime *)crime{
     if (_crime.title == crime.title) {
         return;
@@ -44,6 +55,13 @@
     MyDatePickerDialogViewController *controller = [self.viewController.storyboard instantiateViewControllerWithIdentifier:@"DatePickerController"];
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.dateNow = self.crime.date;
+    controller.dateChangedDelegate = self;
+    
+    
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    dateFormatter.dateFormat = @"yyyy-MM-dd HH-mm-ss";
+//    NSLog(@"%@", [dateFormatter stringFromDate:self.crime.date]);
+    
     [self.viewController presentViewController:controller animated:YES completion:nil];
 }
 

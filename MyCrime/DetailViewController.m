@@ -60,8 +60,6 @@
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.isUpdatingLayout) {
         self.currentItem = indexPath;
-//        MyCrime *crime = [self.app.crimeLab objectAtIndex:indexPath.row];
-//        self.title = crime.title;
     }
 }
 

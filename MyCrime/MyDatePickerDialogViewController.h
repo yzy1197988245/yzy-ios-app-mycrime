@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MyDateChangedDelegate;
+
 @interface MyDatePickerDialogViewController : UIViewController
 
 @property (nonatomic, weak) NSDate *dateNow;
+
+
+@property id<MyDateChangedDelegate> dateChangedDelegate;
+
+@end
+
+
+@protocol MyDateChangedDelegate <NSObject>
+
+- (void)onDateChanged:(NSDate *)date;
 
 @end
