@@ -60,27 +60,12 @@
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.isUpdatingLayout) {
         self.currentItem = indexPath;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateView" object:indexPath];
     }
 }
 
 
-
 #pragma mark - view events
-- (void)viewDidLoad{
-    [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-}
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
