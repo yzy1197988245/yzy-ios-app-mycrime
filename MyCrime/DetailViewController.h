@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "MyCrime.h"
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <UIPopoverPresentationControllerDelegate>
 
-@property (nonatomic, weak) NSIndexPath *startIndex;
+@property (weak, nonatomic) NSIndexPath *currentItem;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "DetailCell.h"
+#import "MyDatePickerDialogViewController.h"
 
 @interface DetailCell ()
 
@@ -15,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet UISwitch *checkSwitch;
 
 - (IBAction)dateButtonClicked:(UIButton *)sender;
+- (IBAction)titleChanged:(UITextField *)sender;
+- (IBAction)checkChanged:(UISwitch *)sender;
+
 
 @end
 
@@ -26,24 +30,32 @@
     
     _crime = crime;
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSString *dateString = [dateFormatter stringFromDate:self.crime.date];
+    
     self.titleTextField.text = crime.title;
-    [self.dateButton setTitle:crime.date.description forState:UIControlStateNormal];
+    [self.dateButton setTitle:dateString forState:UIControlStateNormal];
     self.checkSwitch.on = crime.isChecked;
     
 }
 
-//- (void)awakeFromNib{
-//    [super awakeFromNib];
-//}
-//
-//- (void)prepareForReuse{
-//    [super prepareForReuse];
-//    
-//}
-
-
 - (IBAction)dateButtonClicked:(UIButton *)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"test" message:@"test" delegate:nil cancelButtonTitle:@"cancle" otherButtonTitles: nil];
-    [alert show];
+    MyDatePickerDialogViewController *controller = [self.viewController.storyboard instantiateViewControllerWithIdentifier:@"DatePickerController"];
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    controller.dateNow = self.crime.date;
+    [self.viewController presentViewController:controller animated:YES completion:nil];
 }
+
+- (IBAction)titleChanged:(UITextField *)sender {
+    self.crime.title = sender.text;
+}
+
+- (IBAction)checkChanged:(UISwitch *)sender {
+    self.crime.isChecked = sender.isOn;
+}
+
+
+
+
 @end

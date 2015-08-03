@@ -30,6 +30,10 @@
     return self;
 }
 
+- (void)showModal:(UIViewController *)controller {
+//    self.window.rootView
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:self.window.rootViewController];

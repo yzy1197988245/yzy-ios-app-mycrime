@@ -123,6 +123,9 @@
                                                     <rect key="frame" x="8" y="102" width="554" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="titleChanged:" destination="nky-vN-Wak" eventType="editingDidEnd" id="cxZ-Ef-ujK"/>
+                                                    </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNL-D7-Yvo">
                                                     <rect key="frame" x="8" y="227" width="554" height="30"/>
@@ -135,6 +138,9 @@
                                                 </button>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HT4-4K-84c">
                                                     <rect key="frame" x="8" y="300" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="checkChanged:" destination="nky-vN-Wak" eventType="valueChanged" id="wg2-2E-e0v"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -159,7 +165,7 @@
                                         <connections>
                                             <outlet property="checkSwitch" destination="HT4-4K-84c" id="gyz-Vn-9zs"/>
                                             <outlet property="dateButton" destination="RNL-D7-Yvo" id="Ng2-Td-MV6"/>
-                                            <outlet property="titleTextField" destination="AOi-fU-iVn" id="OMJ-J8-JIF"/>
+                                            <outlet property="titleTextField" destination="AOi-fU-iVn" id="vAt-yi-ykt"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -184,6 +190,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3cm-7V-mvs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="334" y="1060"/>
+        </scene>
+        <!--My Date Picker Dialog View Controller-->
+        <scene sceneID="p7t-se-edO">
+            <objects>
+                <viewController storyboardIdentifier="DatePickerController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mio-aE-F33" customClass="MyDatePickerDialogViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x88-7p-2gL"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q4M-Uw-RKG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gu3-cR-Evi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="6GS-cY-OPj">
+                                <rect key="frame" x="150" y="192" width="300" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="EZP-ZF-zI3"/>
+                                    <constraint firstAttribute="height" constant="300" id="HY2-5a-jsq"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="460258436.57027102">
+                                    <!--2015-08-03 01:33:56 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="dateChanged:" destination="mio-aE-F33" eventType="valueChanged" id="u6t-Xe-q00"/>
+                                </connections>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7W-8Y-OLz">
+                                <rect key="frame" x="16" y="562" width="30" height="30"/>
+                                <state key="normal" title="确定">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="okButtonClicked:" destination="mio-aE-F33" eventType="touchUpInside" id="1Kn-uE-Xsf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9QA-aE-Tea">
+                                <rect key="frame" x="554" y="562" width="30" height="30"/>
+                                <state key="normal" title="取消">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancleButtonClicked:" destination="mio-aE-F33" eventType="touchUpInside" id="X3X-Hg-NmF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4R5-SQ-g1X">
+                                <rect key="frame" x="285" y="562" width="30" height="30"/>
+                                <state key="normal" title="今天">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="todayButtonClicked:" destination="mio-aE-F33" eventType="touchUpInside" id="aP4-dO-lsE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.6343533657" blue="0.39097215810000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="6GS-cY-OPj" secondAttribute="centerX" id="47z-bi-jZZ"/>
+                            <constraint firstAttribute="centerY" secondItem="6GS-cY-OPj" secondAttribute="centerY" id="AVz-b3-79h"/>
+                            <constraint firstAttribute="trailing" secondItem="9QA-aE-Tea" secondAttribute="trailing" constant="16" id="B4X-MQ-Pds"/>
+                            <constraint firstItem="i7W-8Y-OLz" firstAttribute="leading" secondItem="Gu3-cR-Evi" secondAttribute="leading" constant="16" id="IR7-Jn-N5Q"/>
+                            <constraint firstItem="Q4M-Uw-RKG" firstAttribute="top" secondItem="4R5-SQ-g1X" secondAttribute="bottom" constant="8" id="SQf-rN-qpB"/>
+                            <constraint firstAttribute="centerX" secondItem="4R5-SQ-g1X" secondAttribute="centerX" id="bDN-U1-xEH"/>
+                            <constraint firstItem="Q4M-Uw-RKG" firstAttribute="top" secondItem="9QA-aE-Tea" secondAttribute="bottom" constant="8" id="gWV-dD-MoS"/>
+                            <constraint firstItem="Q4M-Uw-RKG" firstAttribute="top" secondItem="i7W-8Y-OLz" secondAttribute="bottom" constant="8" id="iyA-nT-s2z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="6GS-cY-OPj" id="UHJ-Nm-KBb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iiO-Sv-Wnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="1716"/>
         </scene>
     </scenes>
 </document>

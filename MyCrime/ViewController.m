@@ -33,8 +33,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.selectedItem = indexPath;
-    DetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
-    controller.startIndex = indexPath;
+    DetailViewController *controller =(DetailViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    controller.currentItem = indexPath;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
