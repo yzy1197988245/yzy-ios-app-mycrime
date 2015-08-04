@@ -41,7 +41,6 @@
 #pragma mark - notification methods
 - (void)updateView:(NSNotification *)notification {
     if ([notification.name isEqualToString:@"updateView"]) {
-//        NSLog(@"hehe");
         self.selectedItem = notification.object;
     }
 }
@@ -60,13 +59,6 @@
         self.selectedItem = nil;
     }
 }
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 
 
 @end

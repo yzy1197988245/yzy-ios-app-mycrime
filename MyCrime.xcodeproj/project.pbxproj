@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A3CCAC81B6F4A8F00B968C7 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3CCAC71B6F4A8F00B968C7 /* libsqlite3.0.dylib */; };
+		6A3CCACA1B6F4A9900B968C7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3CCAC91B6F4A9900B968C7 /* libsqlite3.dylib */; };
+		6A3CCAD01B6F54CE00B968C7 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CCACF1B6F54CE00B968C7 /* DBManager.m */; };
 		6A401CEB1B6607CC003E35F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A401CEA1B6607CC003E35F8 /* main.m */; };
 		6A401CEE1B6607CC003E35F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A401CED1B6607CC003E35F8 /* AppDelegate.m */; };
 		6A401CF11B6607CC003E35F8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A401CF01B6607CC003E35F8 /* ViewController.m */; };
@@ -34,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6A3CCAC71B6F4A8F00B968C7 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		6A3CCAC91B6F4A9900B968C7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		6A3CCACE1B6F54CE00B968C7 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		6A3CCACF1B6F54CE00B968C7 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		6A401CE51B6607CC003E35F8 /* MyCrime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCrime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A401CE91B6607CC003E35F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A401CEA1B6607CC003E35F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -68,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A3CCACA1B6F4A9900B968C7 /* libsqlite3.dylib in Frameworks */,
+				6A3CCAC81B6F4A8F00B968C7 /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +117,8 @@
 		6A401CDC1B6607CC003E35F8 = {
 			isa = PBXGroup;
 			children = (
+				6A3CCAC91B6F4A9900B968C7 /* libsqlite3.dylib */,
+				6A3CCAC71B6F4A8F00B968C7 /* libsqlite3.0.dylib */,
 				6A401CE71B6607CC003E35F8 /* MyCrime */,
 				6A401D011B6607CC003E35F8 /* MyCrimeTests */,
 				6A401CE61B6607CC003E35F8 /* Products */,
@@ -206,6 +217,8 @@
 			children = (
 				6A58A1071B6B6D4300D105D9 /* MyPresentationController.h */,
 				6A58A1081B6B6D4300D105D9 /* MyPresentationController.m */,
+				6A3CCACE1B6F54CE00B968C7 /* DBManager.h */,
+				6A3CCACF1B6F54CE00B968C7 /* DBManager.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -317,6 +330,7 @@
 				6A401D211B660CE5003E35F8 /* NSObject+MyApplication.m in Sources */,
 				6A401D1B1B660990003E35F8 /* MyCrime.m in Sources */,
 				6A401CEB1B6607CC003E35F8 /* main.m in Sources */,
+				6A3CCAD01B6F54CE00B968C7 /* DBManager.m in Sources */,
 				6A401D271B661FA6003E35F8 /* DetailViewController.m in Sources */,
 				6A58A10C1B6B71C200D105D9 /* MyDatePickerDialogViewController.m in Sources */,
 				6A58A1091B6B6D4300D105D9 /* MyPresentationController.m in Sources */,

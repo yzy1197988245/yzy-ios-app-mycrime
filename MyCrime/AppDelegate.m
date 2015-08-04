@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "MyCrime.h"
+#import "DBManager.h"
+
+NSString *filePath = @"/tmp/data.txt";
 
 @interface AppDelegate ()
 
@@ -15,29 +18,37 @@
 
 @implementation AppDelegate
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        _crimeLab = [[NSMutableArray alloc] init];
-        for (NSInteger i = 0; i<100; i++) {
-            MyCrime *crime = [[MyCrime alloc] init];
-            crime.title = [NSString stringWithFormat:@"MyCrime #%@",@(i)];
-            crime.isChecked = i % 2;
-            crime.date = [NSDate date];
-            [_crimeLab addObject:crime];
-        }
-    }
-    return self;
+//- (id)init {
+//    self = [super init];
+//    if (self) {
+//        _crimeLab = [[NSMutableArray alloc] init];
+//        
+//        _crimeLab = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+//        
+//    }
+//    return self;
+//}
+
+
+
+- (void)savaDatatoFile {
+    [NSKeyedArchiver archiveRootObject:_crimeLab toFile:filePath];
 }
 
-- (void)showModal:(UIViewController *)controller {
-//    self.window.rootView
-}
+
+
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
     UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:self.window.rootViewController];
     self.window.rootViewController = controller;
+    
+    _crimeLab = [[NSMutableArray alloc] init];
+    
+    _crimeLab = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    
     return YES;
 }
 
@@ -49,6 +60,8 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [self savaDatatoFile];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -57,10 +70,12 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
 }
 
 @end

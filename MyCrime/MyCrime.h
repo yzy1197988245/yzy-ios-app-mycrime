@@ -14,4 +14,7 @@
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, assign) BOOL isChecked;
 
+- (NSUUID *)getId;
+- (instancetype)initWith:(NSUUID *)id andTitle:(NSString *)title andDate:(NSDate *)date andIsChecked:(BOOL)checked;
+
 @end

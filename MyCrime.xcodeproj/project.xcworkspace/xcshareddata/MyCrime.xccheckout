@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>99626ADE-F0C8-42BF-A853-92D3B9581AF0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MyCrime</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6187B8222D90143ABBF7FB403C5882FC868C4BAB</key>
+		<string>https://github.com/yzy1197988245/yzy-ios-app-mycrime.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MyCrime.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6187B8222D90143ABBF7FB403C5882FC868C4BAB</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/yzy1197988245/yzy-ios-app-mycrime.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6187B8222D90143ABBF7FB403C5882FC868C4BAB</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6187B8222D90143ABBF7FB403C5882FC868C4BAB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MyCrime</string>
+		</dict>
+	</array>
+</dict>
+</plist>
