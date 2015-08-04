@@ -10,15 +10,48 @@
 #import "NSObject+MyApplication.h"
 #import "CrimeTableViewCell.h"
 #import "DetailViewController.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSIndexPath *selectedItem;
+@property (strong, nonatomic) EGORefreshTableHeaderView *headView;
 
 @end
 
 @implementation ViewController
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view {
+    return NO;
+}
+
+- (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view {
+    return [NSDate date];
+}
+
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view {
+    [self performSelectorInBackground:@selector(test) withObject:nil];
+}
+
+- (void) test{
+    [NSThread sleepForTimeInterval:1];
+    [self performSelectorOnMainThread:@selector(test2) withObject:nil waitUntilDone:YES];
+}
+
+- (void) test2{
+//    NSLog(@"task end");
+    [self.headView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.headView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [self.headView egoRefreshScrollViewDidEndDragging:scrollView];
+}
 
 #pragma mark - table delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -46,6 +79,12 @@
 }
 
 #pragma mark - view events
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+  
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
@@ -60,5 +99,15 @@
     }
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    if (!self.headView) {
+        self.headView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, -self.tableView.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height)];
+        self.headView.delegate = self;
+        [self.tableView addSubview:self.headView];
+    }
+    
+}
 
 @end
