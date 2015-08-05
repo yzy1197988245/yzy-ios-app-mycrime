@@ -32,7 +32,7 @@ NSString *filePath = @"/tmp/data.txt";
 
 
 - (void)savaDatatoFile {
-    [NSKeyedArchiver archiveRootObject:_crimeLab toFile:filePath];
+//    [NSKeyedArchiver archiveRootObject:_crimeLab toFile:filePath];
 }
 
 
@@ -47,7 +47,18 @@ NSString *filePath = @"/tmp/data.txt";
     
     _crimeLab = [[NSMutableArray alloc] init];
     
-    _crimeLab = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    for (NSInteger i = 0; i<100; i++) {
+        MyCrime *crime = [[MyCrime alloc] init];
+        crime.title = [NSString stringWithFormat:@"%@",@(i)];
+        
+        crime.isChecked = i%2;
+        
+        crime.date = [NSDate date];
+        
+        [_crimeLab addObject:crime];
+    }
+    
+//    _crimeLab = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     
     return YES;
 }
