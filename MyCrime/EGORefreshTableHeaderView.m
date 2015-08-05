@@ -225,22 +225,19 @@
 		}
 		
 		[self setState:EGOOPullRefreshLoading];
-//        [self performSelectorInBackground:@selector(test:) withObject:scrollView];
-//        [self performSelector:@selector(test:) withObject:scrollView afterDelay:0];
-        [self performSelector:@selector(test:) withObject:scrollView];
+        
+        dispatch_barrier_async(dispatch_get_main_queue(), ^{
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.2];
+            
+            scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+            [scrollView setContentOffset:CGPointMake(0, -60) animated:NO];
+            
+            [UIView commitAnimations];
+            
+        });
 	}
 	
-}
-
-- (void)test :(UIScrollView *)scrollView{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.2];
-    
-    scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
-    [scrollView setContentOffset:CGPointMake(0, -60.0f) animated:NO];
-    
-    [UIView commitAnimations];
-    
 }
 
 - (void)egoRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {	
