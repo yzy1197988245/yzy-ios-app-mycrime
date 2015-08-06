@@ -13,7 +13,6 @@
 @property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, assign) CGRect viewSize;
 
-
 @end
 
 @implementation MyPresentationController
@@ -22,7 +21,7 @@
     if (_backgroundView) {
         return _backgroundView;
     } else {
-        UIView *view = [[UIView alloc] initWithFrame:self.presentingViewController.view.frame];
+        UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
         view.userInteractionEnabled = YES;
         UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissPresentedView)];
@@ -39,8 +38,7 @@
 - (void)presentationTransitionWillBegin {
     [super presentationTransitionWillBegin];
     [self.containerView addSubview:self.backgroundView];
-//    [self.backgroundView addSubview:self.presentedViewController.view];
-//    self.backgroundView addSubview:sel;
+    [self.backgroundView addSubview:self.presentedViewController.view];
     self.backgroundView.alpha = 0;
     [self.presentingViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
         self.backgroundView.alpha = 1;
@@ -48,41 +46,34 @@
 }
 
 - (void)presentationTransitionDidEnd:(BOOL)completed {
+    [super presentationTransitionDidEnd:completed];
     if (!completed) {
         [self.backgroundView removeFromSuperview];
     }
 }
 
 - (void)dismissalTransitionWillBegin {
+    [super dismissalTransitionWillBegin];
     [self.presentingViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
         self.backgroundView.alpha = 0;
     } completion:nil];
 }
 
 - (void)dismissalTransitionDidEnd:(BOOL)completed {
+    [super dismissalTransitionDidEnd:completed];
     if (completed) {
         [self.backgroundView removeFromSuperview];
     }
 }
 
 - (CGRect)frameOfPresentedViewInContainerView {
-//    if (CGRectEqualToRect(self.viewSize, CGRectZero)) {
-//        CGFloat x = (self.containerView.frame.size.width - 400) / 2;
-//        CGFloat y = (self.containerView.frame.size.height - 300) / 2;
-//        self.viewSize = CGRectMake(x, y, 400, 300);
-//        return self.viewSize;
-//    } else {
-//        NSLog(@"%@,%@",@(self.viewSize.size.height),@(self.viewSize.size.width));
-//        return self.viewSize;
-//    }
-    self.viewSize = self.presentedView.frame;
     return self.presentedView.frame;
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        self.backgroundView.frame = self.presentingViewController.view.frame;
-        self.presentedViewController.view.frame = self.viewSize;
+        self.backgroundView.frame = [UIScreen mainScreen].bounds;
     } completion:nil];
 }
 
