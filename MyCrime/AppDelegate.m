@@ -18,47 +18,36 @@ NSString *filePath = @"/tmp/data.txt";
 
 @implementation AppDelegate
 
-//- (id)init {
-//    self = [super init];
-//    if (self) {
-//        _crimeLab = [[NSMutableArray alloc] init];
-//        
-//        _crimeLab = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-//        
-//    }
-//    return self;
-//}
-
-
-
 - (void)savaDatatoFile {
-//    [NSKeyedArchiver archiveRootObject:_crimeLab toFile:filePath];
+    [NSKeyedArchiver archiveRootObject:_crimeLab toFile:filePath];
 }
-
-
-
-
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:self.window.rootViewController];
     self.window.rootViewController = controller;
     
-    _crimeLab = [[NSMutableArray alloc] init];
+//    _crimeLab = [[NSMutableArray alloc] init];
     
-    for (NSInteger i = 0; i<100; i++) {
-        MyCrime *crime = [[MyCrime alloc] init];
-        crime.title = [NSString stringWithFormat:@"%@",@(i)];
-        
-        crime.isChecked = i%2;
-        
-        crime.date = [NSDate date];
-        
-        [_crimeLab addObject:crime];
+//    for (NSInteger i = 0; i<100; i++) {
+//        MyCrime *crime = [[MyCrime alloc] init];
+//        crime.title = [NSString stringWithFormat:@"%@",@(i)];
+//        
+//        crime.isChecked = i%2;
+//        
+//        crime.date = [NSDate date];
+//        
+//        [_crimeLab addObject:crime];
+//    }
+    
+    
+    
+    _crimeLab = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    
+    if (!_crimeLab) {
+        NSLog(@"file not found");
+        _crimeLab = [[NSMutableArray alloc] init];
     }
-    
-//    _crimeLab = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     
     return YES;
 }

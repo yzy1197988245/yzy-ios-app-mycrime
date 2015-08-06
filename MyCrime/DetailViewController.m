@@ -66,11 +66,20 @@
 
 
 #pragma mark - view events
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
     [self UpdateCollectionViewLayout];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.app savaDatatoFile];
 }
 
 @end

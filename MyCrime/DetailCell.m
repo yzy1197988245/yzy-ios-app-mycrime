@@ -24,6 +24,10 @@
 
 @implementation DetailCell
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.titleTextField endEditing:YES];
+}
+
 - (void)onDateChanged:(NSDate *)date {
     if (self.crime.date.description != date.description) {
         self.crime.date = date;
@@ -57,10 +61,10 @@
     controller.dateNow = self.crime.date;
     controller.dateChangedDelegate = self;
     
-    
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    dateFormatter.dateFormat = @"yyyy-MM-dd HH-mm-ss";
-//    NSLog(@"%@", [dateFormatter stringFromDate:self.crime.date]);
+    CGFloat height = self.viewController.view.frame.size.height;
+    CGFloat width = self.viewController.view.frame.size.width;
+    CGRect frame = CGRectMake((width-400)/2, (height-300)/2, 400, 300);
+    controller.view.frame = frame;
     
     [self.viewController presentViewController:controller animated:YES completion:nil];
 }

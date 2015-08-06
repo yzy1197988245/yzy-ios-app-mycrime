@@ -33,6 +33,7 @@
 		6A4CA59D1B7085FF005EB1C8 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4CA5951B7085FF005EB1C8 /* whiteArrow@2x.png */; };
 		6A58A1091B6B6D4300D105D9 /* MyPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A58A1081B6B6D4300D105D9 /* MyPresentationController.m */; };
 		6A58A10C1B6B71C200D105D9 /* MyDatePickerDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A58A10B1B6B71C200D105D9 /* MyDatePickerDialogViewController.m */; };
+		6AF6B4A91B71FCD3008CAC21 /* NewCrimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF6B4A81B71FCD3008CAC21 /* NewCrimeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		6A58A1081B6B6D4300D105D9 /* MyPresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPresentationController.m; sourceTree = "<group>"; };
 		6A58A10A1B6B71C200D105D9 /* MyDatePickerDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatePickerDialogViewController.h; sourceTree = "<group>"; };
 		6A58A10B1B6B71C200D105D9 /* MyDatePickerDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDatePickerDialogViewController.m; sourceTree = "<group>"; };
+		6AF6B4A71B71FCD3008CAC21 /* NewCrimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCrimeViewController.h; sourceTree = "<group>"; };
+		6AF6B4A81B71FCD3008CAC21 /* NewCrimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCrimeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +130,6 @@
 				6A401D261B661FA6003E35F8 /* DetailViewController.m */,
 				6A4BF82B1B672881001FB9A4 /* DetailCell.h */,
 				6A4BF82C1B672881001FB9A4 /* DetailCell.m */,
-				6A58A10A1B6B71C200D105D9 /* MyDatePickerDialogViewController.h */,
-				6A58A10B1B6B71C200D105D9 /* MyDatePickerDialogViewController.m */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -196,6 +197,8 @@
 		6A401D0E1B6607D6003E35F8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6A4CB7111B72F4C40065F589 /* DatePicker */,
+				6AF6B4A61B71FCA4008CAC21 /* NewCrime */,
 				6A3765471B68A75A0068049A /* Detail */,
 				6A3765461B68A7490068049A /* main */,
 			);
@@ -257,6 +260,15 @@
 			name = Arrow;
 			sourceTree = "<group>";
 		};
+		6A4CB7111B72F4C40065F589 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				6A58A10A1B6B71C200D105D9 /* MyDatePickerDialogViewController.h */,
+				6A58A10B1B6B71C200D105D9 /* MyDatePickerDialogViewController.m */,
+			);
+			name = DatePicker;
+			sourceTree = "<group>";
+		};
 		6A58A1061B6B6D1900D105D9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +278,15 @@
 				6A3CCACF1B6F54CE00B968C7 /* DBManager.m */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		6AF6B4A61B71FCA4008CAC21 /* NewCrime */ = {
+			isa = PBXGroup;
+			children = (
+				6AF6B4A71B71FCD3008CAC21 /* NewCrimeViewController.h */,
+				6AF6B4A81B71FCD3008CAC21 /* NewCrimeViewController.m */,
+			);
+			name = NewCrime;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,6 +405,7 @@
 				6A401D211B660CE5003E35F8 /* NSObject+MyApplication.m in Sources */,
 				6A401D1B1B660990003E35F8 /* MyCrime.m in Sources */,
 				6A401CEB1B6607CC003E35F8 /* main.m in Sources */,
+				6AF6B4A91B71FCD3008CAC21 /* NewCrimeViewController.m in Sources */,
 				6A3CCAD01B6F54CE00B968C7 /* DBManager.m in Sources */,
 				6A401D271B661FA6003E35F8 /* DetailViewController.m in Sources */,
 				6A58A10C1B6B71C200D105D9 /* MyDatePickerDialogViewController.m in Sources */,

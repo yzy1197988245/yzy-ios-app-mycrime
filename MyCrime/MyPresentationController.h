@@ -10,6 +10,6 @@
 
 @interface MyPresentationController : UIPresentationController
 
-@property (nonatomic, assign) CGSize dialogSize;
+
 
 @end

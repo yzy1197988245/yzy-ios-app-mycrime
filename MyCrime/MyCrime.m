@@ -57,4 +57,9 @@
     return self.id;
 }
 
+- (NSString *)description {
+    [super description];
+    return self.title;
+}
+
 @end

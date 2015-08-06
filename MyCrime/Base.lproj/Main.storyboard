@@ -191,6 +191,95 @@
             </objects>
             <point key="canvasLocation" x="334" y="1060"/>
         </scene>
+        <!--New Crime View Controller-->
+        <scene sceneID="gYU-v3-Big">
+            <objects>
+                <viewController storyboardIdentifier="NewCrimeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mFb-pY-cFR" customClass="NewCrimeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Vh-oK-O48"/>
+                        <viewControllerLayoutGuide type="bottom" id="rNC-Hb-pfL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ASI-no-DlA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KsA-SZ-MX6">
+                                <rect key="frame" x="16" y="50" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2J-E0-qN3">
+                                <rect key="frame" x="16" y="117" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YfF-YC-LaB">
+                                <rect key="frame" x="16" y="79" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="titleChanged:" destination="mFb-pY-cFR" eventType="editingDidEnd" id="F2X-1b-Qcr"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5KL-tF-iIh">
+                                <rect key="frame" x="16" y="146" width="568" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dateChanged:" destination="mFb-pY-cFR" eventType="touchUpInside" id="OjL-14-TGe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIK-k9-FYk">
+                                <rect key="frame" x="16" y="562" width="30" height="30"/>
+                                <state key="normal" title="确定">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="okButtonClicked:" destination="mFb-pY-cFR" eventType="touchUpInside" id="K7q-xH-B9P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQC-57-pxi">
+                                <rect key="frame" x="554" y="562" width="30" height="30"/>
+                                <state key="normal" title="取消">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancleButtonClicked:" destination="mFb-pY-cFR" eventType="touchUpInside" id="7Ud-7r-n5a"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="E2J-E0-qN3" firstAttribute="leading" secondItem="ASI-no-DlA" secondAttribute="leadingMargin" id="Jdb-7f-O3v"/>
+                            <constraint firstItem="YfF-YC-LaB" firstAttribute="leading" secondItem="ASI-no-DlA" secondAttribute="leading" constant="16" id="Kz1-cd-bNZ"/>
+                            <constraint firstItem="KsA-SZ-MX6" firstAttribute="leading" secondItem="ASI-no-DlA" secondAttribute="leading" constant="16" id="Tb4-fo-syb"/>
+                            <constraint firstItem="rNC-Hb-pfL" firstAttribute="top" secondItem="cIK-k9-FYk" secondAttribute="bottom" constant="8" id="Tbk-dw-ts8"/>
+                            <constraint firstItem="5KL-tF-iIh" firstAttribute="top" secondItem="E2J-E0-qN3" secondAttribute="bottom" constant="8" id="YwG-wP-sdZ"/>
+                            <constraint firstAttribute="trailing" secondItem="BQC-57-pxi" secondAttribute="trailing" constant="16" id="aai-Nn-ch6"/>
+                            <constraint firstItem="5KL-tF-iIh" firstAttribute="leading" secondItem="ASI-no-DlA" secondAttribute="leading" constant="16" id="cRO-e5-ntd"/>
+                            <constraint firstItem="rNC-Hb-pfL" firstAttribute="top" secondItem="BQC-57-pxi" secondAttribute="bottom" constant="8" id="doz-WX-QQi"/>
+                            <constraint firstAttribute="trailing" secondItem="YfF-YC-LaB" secondAttribute="trailing" constant="16" id="e6N-tE-emz"/>
+                            <constraint firstItem="YfF-YC-LaB" firstAttribute="top" secondItem="KsA-SZ-MX6" secondAttribute="bottom" constant="8" id="gey-jz-heW"/>
+                            <constraint firstItem="cIK-k9-FYk" firstAttribute="leading" secondItem="ASI-no-DlA" secondAttribute="leading" constant="16" id="mMo-FS-88i"/>
+                            <constraint firstAttribute="trailing" secondItem="KsA-SZ-MX6" secondAttribute="trailing" constant="16" id="oxA-8S-D46"/>
+                            <constraint firstItem="KsA-SZ-MX6" firstAttribute="top" secondItem="7Vh-oK-O48" secondAttribute="bottom" constant="30" id="p3i-Hg-ZK9"/>
+                            <constraint firstAttribute="trailing" secondItem="5KL-tF-iIh" secondAttribute="trailing" constant="16" id="rb8-uV-X58"/>
+                            <constraint firstItem="E2J-E0-qN3" firstAttribute="top" secondItem="YfF-YC-LaB" secondAttribute="bottom" constant="8" id="vjk-IK-KbH"/>
+                            <constraint firstItem="E2J-E0-qN3" firstAttribute="trailing" secondItem="ASI-no-DlA" secondAttribute="trailingMargin" id="ygy-90-w51"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateButton" destination="5KL-tF-iIh" id="JEz-n1-Ulh"/>
+                        <outlet property="titleTextField" destination="YfF-YC-LaB" id="Q6P-6t-JC4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L8M-Ue-Lko" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="1742"/>
+        </scene>
         <!--My Date Picker Dialog View Controller-->
         <scene sceneID="p7t-se-edO">
             <objects>

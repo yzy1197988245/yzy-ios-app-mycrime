@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, assign) CGRect viewSize;
 
+
 @end
 
 @implementation MyPresentationController
@@ -65,10 +66,17 @@
 }
 
 - (CGRect)frameOfPresentedViewInContainerView {
-    CGFloat x = (self.containerView.frame.size.width - 400) / 2;
-    CGFloat y = (self.containerView.frame.size.height - 300) / 2;
-    self.viewSize = CGRectMake(x, y, 400, 300);
-    return self.viewSize;
+//    if (CGRectEqualToRect(self.viewSize, CGRectZero)) {
+//        CGFloat x = (self.containerView.frame.size.width - 400) / 2;
+//        CGFloat y = (self.containerView.frame.size.height - 300) / 2;
+//        self.viewSize = CGRectMake(x, y, 400, 300);
+//        return self.viewSize;
+//    } else {
+//        NSLog(@"%@,%@",@(self.viewSize.size.height),@(self.viewSize.size.width));
+//        return self.viewSize;
+//    }
+    self.viewSize = self.presentedView.frame;
+    return self.presentedView.frame;
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {

@@ -11,8 +11,9 @@
 #import "CrimeTableViewCell.h"
 #import "DetailViewController.h"
 #import "EGORefreshTableHeaderView.h"
+#import "NewCrimeViewController.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate, NewCrimeDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSIndexPath *selectedItem;
@@ -24,11 +25,21 @@
 @end
 
 @implementation ViewController
-#pragma mark - private methods 
+#pragma mark - private methods
+- (void)newCrimeAction {
+    NewCrimeViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"NewCrimeViewController"];
+    controller.modalPresentationStyle = UIModalPresentationCustom;
+    CGFloat height = self.view.frame.size.height;
+    CGFloat width = self.view.frame.size.width;
+    CGRect frame = CGRectMake(width*0.1, height*0.1, width*0.8, height*0.8);
+    controller.view.frame = frame;
+    controller.delegate = self;
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
 - (void)deleteAction {
     if ([self.navigationItem.rightBarButtonItem.title isEqualToString:@"批量删除"]) {
         [self.tableView setEditing:!self.tableView.isEditing animated:YES];
-//        [self.navigationItem.rightBarButtonItem setTitle:@"确定"];
         if (self.tableView.isEditing) {
             [self.navigationItem.rightBarButtonItem setTitle:@"确定"];
         }
@@ -41,8 +52,15 @@
         
         [self.tableView deleteRowsAtIndexPaths:self.delItems withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.delItems removeAllObjects];
+        
+        [self.app savaDatatoFile];
     }
-    
+}
+
+- (void)onCrimeCreated:(MyCrime *)crime {
+    [self.app.crimeLab addObject:crime];
+    [self.tableView reloadData];
+    [self.app savaDatatoFile];
 }
 
 #pragma mark - task methods
@@ -62,7 +80,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     CrimeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.crime = [self.app.crimeLab objectAtIndex:indexPath.row];
 
@@ -76,7 +93,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     if (!self.tableView.editing) {
         self.selectedItem = indexPath;
         DetailViewController *controller =(DetailViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
@@ -86,7 +102,6 @@
         [self.delItems addObject:indexPath];
         [self.delCrimes addObject:[self.app.crimeLab objectAtIndex:indexPath.row]];
     }
-
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,7 +109,6 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (self.tableView.editing) {
         return UITableViewCellEditingStyleInsert|UITableViewCellEditingStyleDelete;
     } else
@@ -108,12 +122,12 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.app.crimeLab removeObjectAtIndex:indexPath.row];
-        //    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        [self.app savaDatatoFile];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         
     }
-
 }
 
 #pragma mark - scroll delegate
@@ -152,6 +166,9 @@
     
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"批量删除" style:UIBarButtonItemStylePlain target:self action:@selector(deleteAction)];
     self.navigationItem.rightBarButtonItem = deleteButton;
+    
+    UIBarButtonItem *newCrimeButton = [[UIBarButtonItem alloc] initWithTitle:@"新建" style:UIBarButtonItemStyleDone target:self action:@selector(newCrimeAction)];
+    self.navigationItem.leftBarButtonItem = newCrimeButton;
 
     self.delItems = [[NSMutableArray alloc] init];
     self.delCrimes = [[NSMutableArray alloc] init];
