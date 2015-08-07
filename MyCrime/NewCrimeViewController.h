@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MyCrime.h"
-#import "YZYPopoverDialogViewController.h"
+#import "YZYPopoverViewController.h"
 
 @protocol NewCrimeDelegate;
 
-@interface NewCrimeViewController : YZYPopoverDialogViewController
+@interface NewCrimeViewController : YZYPopoverViewController
 
 @property id<NewCrimeDelegate> delegate;
 
