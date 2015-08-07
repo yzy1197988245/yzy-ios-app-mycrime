@@ -10,7 +10,7 @@
 #import "MyCrime.h"
 #import "DBManager.h"
 
-NSString *filePath = @"/tmp/data.txt";
+NSString *filePath = @"/data.txt";
 
 @interface AppDelegate ()
 
@@ -26,22 +26,7 @@ NSString *filePath = @"/tmp/data.txt";
     
     UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:self.window.rootViewController];
     self.window.rootViewController = controller;
-    
-//    _crimeLab = [[NSMutableArray alloc] init];
-    
-//    for (NSInteger i = 0; i<100; i++) {
-//        MyCrime *crime = [[MyCrime alloc] init];
-//        crime.title = [NSString stringWithFormat:@"%@",@(i)];
-//        
-//        crime.isChecked = i%2;
-//        
-//        crime.date = [NSDate date];
-//        
-//        [_crimeLab addObject:crime];
-//    }
-    
-    
-    
+
     _crimeLab = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     
     if (!_crimeLab) {

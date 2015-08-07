@@ -11,7 +11,6 @@
 @interface MyPresentationController ()
 
 @property (nonatomic, strong) UIView *backgroundView;
-@property (nonatomic, assign) CGRect viewSize;
 
 @end
 

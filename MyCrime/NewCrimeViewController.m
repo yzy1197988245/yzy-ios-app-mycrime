@@ -36,28 +36,7 @@
     [self.dateButton setTitle:[dateFormatter stringFromDate:self.crime.date] forState:UIControlStateNormal];
 }
 
-
-- (void)setModalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle {
-    if (modalPresentationStyle == UIModalPresentationCustom) {
-        [super setModalPresentationStyle:modalPresentationStyle];
-        self.transitioningDelegate = self;
-    } else {
-        [super setModalPresentationStyle:modalPresentationStyle];
-    }
-}
-
-- (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source {
-    if (presented == self) {
-        MyPresentationController *pc = [[MyPresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting];
-        return pc;
-    } else {
-        return nil;
-    }
-}
-
-
 - (IBAction)titleChanged:(UITextField *)sender {
-//    NSLog(@"%@", sender.text);
     self.crime.title = sender.text;
 }
 
@@ -106,6 +85,8 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    
     [self.titleTextField endEditing:YES];
 }
 
