@@ -13,7 +13,7 @@
 #import "EGORefreshTableHeaderView.h"
 #import "NewCrimeViewController.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate, NewCrimeDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, NewCrimeDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSIndexPath *selectedItem;
@@ -21,6 +21,10 @@
 
 @property (strong, nonatomic) NSMutableArray *delItems;
 @property (strong, nonatomic) NSMutableArray *delCrimes;
+
+@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *bottomIndicator;
+
 
 @end
 
@@ -31,6 +35,8 @@
     controller.delegate = self;
     controller.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:controller animated:YES completion:nil];
+    
+//    [self performSelectorInBackground:@selector(createCrimes) withObject:nil];
 }
 
 - (void)deleteAction {
@@ -56,6 +62,29 @@
 - (void)onCrimeCreated:(MyCrime *)crime {
     [self.app.crimeLab addObject:crime];
     [self.tableView reloadData];
+    [self.app savaDatatoFile];
+}
+
+- (void)createCrimes {
+    NSMutableArray *data = [[NSMutableArray alloc] init];
+    for (int i=0; i<3; i++) {
+        MyCrime *crime = [[MyCrime alloc] init];
+        crime.title = [NSString stringWithFormat:@"test #%@", @(i)];
+        crime.isChecked = NO;
+        crime.date = [NSDate date];
+        [data addObject:crime];
+    }
+    [self performSelectorOnMainThread:@selector(addCrimestoCrimeLab:) withObject:data waitUntilDone:NO];
+}
+
+- (void)addCrimestoCrimeLab:(NSMutableArray *)data {
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    for (int i=0; i<data.count; i++) {
+        [self.app.crimeLab addObject:[data objectAtIndex:i]];
+        NSIndexPath *newIndex = [NSIndexPath indexPathForRow:[self.app.crimeLab indexOfObject:[data objectAtIndex:i]] inSection:0];
+        [items addObject:newIndex];
+    }
+    [self.tableView insertRowsAtIndexPaths:items withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.app savaDatatoFile];
 }
 
@@ -129,10 +158,21 @@
 #pragma mark - scroll delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.headView egoRefreshScrollViewDidScroll:scrollView];
+    
+    if ((scrollView.contentOffset.y - self.tableView.rowHeight * 1) > (scrollView.contentSize.height - scrollView.frame.size.height) && scrollView.contentOffset.y > 0) {
+        self.bottomLabel.text = @"松开刷新";
+    } else {
+        self.bottomLabel.text = @"上拉加载更多";
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self.headView egoRefreshScrollViewDidEndDragging:scrollView];
+    
+    if ((scrollView.contentOffset.y - self.tableView.rowHeight * 1)  > (scrollView.contentSize.height - scrollView.frame.size.height) && scrollView.contentOffset.y > 0) {
+        [self performSelectorInBackground:@selector(createCrimes) withObject:nil];
+    }
+    
 }
 
 
@@ -168,6 +208,7 @@
 
     self.delItems = [[NSMutableArray alloc] init];
     self.delCrimes = [[NSMutableArray alloc] init];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{

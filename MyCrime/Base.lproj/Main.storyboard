@@ -20,6 +20,28 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MBE-al-1A2">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="z60-VZ-NJc">
+                                    <rect key="frame" x="0.0" y="107" width="600" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上拉加载更多" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWg-jT-AeK">
+                                            <rect key="frame" x="249" y="20" width="102" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="v81-nk-gp1">
+                                            <rect key="frame" x="376" y="20" width="20" height="20"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="JWg-jT-AeK" secondAttribute="centerY" id="921-cG-APF"/>
+                                        <constraint firstAttribute="centerY" secondItem="v81-nk-gp1" secondAttribute="centerY" id="Evp-v0-fGZ"/>
+                                        <constraint firstItem="v81-nk-gp1" firstAttribute="leading" secondItem="JWg-jT-AeK" secondAttribute="trailing" constant="25" id="QJe-GB-4dB"/>
+                                        <constraint firstAttribute="centerX" secondItem="JWg-jT-AeK" secondAttribute="centerX" id="R9Z-3X-cVG"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="85" id="Pd7-YC-cbM" customClass="CrimeTableViewCell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -72,12 +94,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomIndicator" destination="v81-nk-gp1" id="2ot-ah-q2H"/>
+                        <outlet property="bottomLabel" destination="JWg-jT-AeK" id="Q7X-2t-XVV"/>
                         <outlet property="tableView" destination="MBE-al-1A2" id="vJO-Bh-GyH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="334" y="353"/>
+            <point key="canvasLocation" x="329" y="353"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="fza-iO-SXm">
