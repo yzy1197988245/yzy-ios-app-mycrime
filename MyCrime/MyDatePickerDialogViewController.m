@@ -41,7 +41,18 @@
 }
 
 - (void)viewDidLoad {
-    self.datePicker.date = self.dateNow;
+    if (self.dateNow) {
+        self.datePicker.date = self.dateNow;
+    }
+}
+
+- (void)setModalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle {
+    self.presentationStyle = YZYPopoverViewPresentationStyleDialog;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGRect frame = CGRectMake((width-400)/2, (height-300)/2, 400, 300);
+    self.view.frame = frame;
+    [super setModalPresentationStyle:modalPresentationStyle];
 }
 @end
 
