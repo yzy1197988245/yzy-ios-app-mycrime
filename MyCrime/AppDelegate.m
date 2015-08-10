@@ -10,7 +10,7 @@
 #import "MyCrime.h"
 #import "DBManager.h"
 
-NSString *filePath = @"/data.txt";
+NSString *filePath = @"/tmp/data.txt";
 
 @interface AppDelegate ()
 

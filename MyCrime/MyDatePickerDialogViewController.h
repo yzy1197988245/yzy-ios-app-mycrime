@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YZYPopoverDialogViewController.h"
+#import "YZYPopoverViewController.h"
 
 @protocol MyDateChangedDelegate;
 
-@interface MyDatePickerDialogViewController : YZYPopoverDialogViewController
+@interface MyDatePickerDialogViewController : YZYPopoverViewController
 
 @property (nonatomic, weak) NSDate *dateNow;
 @property id<MyDateChangedDelegate> dateChangedDelegate;

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MyCrime.h"
 
-@interface DetailViewController : UIViewController <UIPopoverPresentationControllerDelegate>
+
+@interface DetailViewController : UIViewController
 
 @property (weak, nonatomic) NSIndexPath *currentItem;
 

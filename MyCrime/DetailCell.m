@@ -57,15 +57,9 @@
 
 - (IBAction)dateButtonClicked:(UIButton *)sender {
     MyDatePickerDialogViewController *controller = [self.viewController.storyboard instantiateViewControllerWithIdentifier:@"DatePickerController"];
-    controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.dateNow = self.crime.date;
     controller.dateChangedDelegate = self;
-    
-    CGFloat height = self.viewController.view.frame.size.height;
-    CGFloat width = self.viewController.view.frame.size.width;
-    CGRect frame = CGRectMake((width-400)/2, (height-300)/2, 400, 300);
-    controller.view.frame = frame;
-    
+    controller.modalPresentationStyle = UIModalPresentationCustom;
     [self.viewController presentViewController:controller animated:YES completion:nil];
 }
 
