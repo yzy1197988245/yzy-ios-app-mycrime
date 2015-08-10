@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    YZYPopoverViewStyleNormal = 0,
+    YZYPopoverViewStyleDialog,
+}YZYPopoverViewStyle;
+
 @interface MyPresentationController : UIPresentationController
+
+@property (nonatomic, assign) YZYPopoverViewStyle style;
 
 @end

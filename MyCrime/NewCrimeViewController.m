@@ -29,6 +29,15 @@
 
 @implementation NewCrimeViewController
 
+- (void)setModalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle {
+    
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    self.view.frame = CGRectMake(width*0.1, height*0.1, width*0.8, height*0.8);
+    
+    [super setModalPresentationStyle:modalPresentationStyle];
+}
+
 - (void)onDateChanged:(NSDate *)date {
     self.crime.date = date;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -43,16 +52,9 @@
 
 - (IBAction)dateChanged:(UIButton *)sender {
     MyDatePickerDialogViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DatePickerController"];
-    controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.dateNow = self.crime.date;
     controller.dateChangedDelegate = self;
-    
-    CGFloat height = self.view.frame.size.height;
-    CGFloat width = self.view.frame.size.height;
-    
-    CGRect frame = CGRectMake((width-400)/2, (height-300)/2, 400, 300);
-    controller.view.frame = frame;
-    
+    controller.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:controller animated:YES completion:nil];
 }
 

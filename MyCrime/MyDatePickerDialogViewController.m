@@ -22,6 +22,16 @@
 @end
 
 @implementation MyDatePickerDialogViewController
+
+
+- (void)setDateNow:(NSDate *)dateNow {
+    _dateNow = dateNow;
+    self.yzyPopoverStyle = YZYPopoverViewStyleDialog;
+    CGFloat x = ([UIScreen mainScreen].bounds.size.width - 400) / 2;
+    CGFloat y = ([UIScreen mainScreen].bounds.size.height - 300) /2;
+    self.view.frame = CGRectMake(x, y, 400, 300);
+}
+
 - (IBAction)cancleButtonClicked:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

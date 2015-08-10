@@ -28,12 +28,8 @@
 #pragma mark - private methods
 - (void)newCrimeAction {
     NewCrimeViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"NewCrimeViewController"];
-    controller.modalPresentationStyle = UIModalPresentationCustom;
-    CGFloat height = self.view.frame.size.height;
-    CGFloat width = self.view.frame.size.width;
-    CGRect frame = CGRectMake(width*0.1, height*0.1, width*0.8, height*0.8);
-    controller.view.frame = frame;
     controller.delegate = self;
+    controller.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:controller animated:YES completion:nil];
 }
 
