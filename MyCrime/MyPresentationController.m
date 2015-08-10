@@ -11,7 +11,6 @@
 @interface MyPresentationController ()
 
 @property (nonatomic, strong) UIView *backgroundView;
-@property (nonatomic, assign) CGSize viewSize;
 
 @end
 
@@ -67,29 +66,14 @@
 }
 
 - (CGRect)frameOfPresentedViewInContainerView {
-    
-    if (self.style == YZYPopoverViewPresentationStyleDialog) {
-        self.viewSize = self.presentedView.frame.size;
-    }
     return self.presentedView.frame;
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    if (self.style == YZYPopoverViewPresentationStyleDialog) {
-        CGFloat height = size.height;
-        CGFloat width = size.width;
-        CGRect frame = CGRectMake((width - self.viewSize.width)/2, (height - self.viewSize.height) / 2, self.viewSize.width, self.viewSize.height);
-        [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-            self.backgroundView.frame = [UIScreen mainScreen].bounds;
-            self.presentedView.frame = frame;
-        } completion:nil];
-    } else {
-        [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-            self.backgroundView.frame = [UIScreen mainScreen].bounds;
-        } completion:nil];
-    }
-    
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        self.backgroundView.frame = [UIScreen mainScreen].bounds;
+    } completion:nil];
 }
 
 @end

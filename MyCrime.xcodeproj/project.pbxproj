@@ -21,8 +21,6 @@
 		6A401D211B660CE5003E35F8 /* NSObject+MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A401D201B660CE5003E35F8 /* NSObject+MyApplication.m */; };
 		6A401D241B661199003E35F8 /* CrimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A401D231B661199003E35F8 /* CrimeTableViewCell.m */; };
 		6A401D271B661FA6003E35F8 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A401D261B661FA6003E35F8 /* DetailViewController.m */; };
-		6A488C3C1B745B870061AAA4 /* YZYTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A488C3B1B745B870061AAA4 /* YZYTableViewManager.m */; };
-		6A488C421B745F460061AAA4 /* YZYTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A488C411B745F460061AAA4 /* YZYTableView.m */; };
 		6A4BF82D1B672881001FB9A4 /* DetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4BF82C1B672881001FB9A4 /* DetailCell.m */; };
 		6A4CA58C1B7085CE005EB1C8 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CA58B1B7085CE005EB1C8 /* EGORefreshTableHeaderView.m */; };
 		6A4CA5961B7085FF005EB1C8 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4CA58E1B7085FF005EB1C8 /* blackArrow.png */; };
@@ -33,7 +31,7 @@
 		6A4CA59B1B7085FF005EB1C8 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4CA5931B7085FF005EB1C8 /* grayArrow@2x.png */; };
 		6A4CA59C1B7085FF005EB1C8 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4CA5941B7085FF005EB1C8 /* whiteArrow.png */; };
 		6A4CA59D1B7085FF005EB1C8 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4CA5951B7085FF005EB1C8 /* whiteArrow@2x.png */; };
-		6A4CB7151B733AFC0065F589 /* YZYPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CB7141B733AFC0065F589 /* YZYPopoverViewController.m */; };
+		6A4CB7151B733AFC0065F589 /* YZYPopoverDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4CB7141B733AFC0065F589 /* YZYPopoverDialogViewController.m */; };
 		6A58A1091B6B6D4300D105D9 /* MyPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A58A1081B6B6D4300D105D9 /* MyPresentationController.m */; };
 		6A58A10C1B6B71C200D105D9 /* MyDatePickerDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A58A10B1B6B71C200D105D9 /* MyDatePickerDialogViewController.m */; };
 		6AF6B4A91B71FCD3008CAC21 /* NewCrimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF6B4A81B71FCD3008CAC21 /* NewCrimeViewController.m */; };
@@ -75,10 +73,6 @@
 		6A401D231B661199003E35F8 /* CrimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrimeTableViewCell.m; sourceTree = "<group>"; };
 		6A401D251B661FA6003E35F8 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		6A401D261B661FA6003E35F8 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		6A488C3A1B745B870061AAA4 /* YZYTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZYTableViewManager.h; sourceTree = "<group>"; };
-		6A488C3B1B745B870061AAA4 /* YZYTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZYTableViewManager.m; sourceTree = "<group>"; };
-		6A488C401B745F460061AAA4 /* YZYTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZYTableView.h; sourceTree = "<group>"; };
-		6A488C411B745F460061AAA4 /* YZYTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZYTableView.m; sourceTree = "<group>"; };
 		6A4BF82B1B672881001FB9A4 /* DetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCell.h; sourceTree = "<group>"; };
 		6A4BF82C1B672881001FB9A4 /* DetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCell.m; sourceTree = "<group>"; };
 		6A4CA58A1B7085CE005EB1C8 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -91,8 +85,8 @@
 		6A4CA5931B7085FF005EB1C8 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		6A4CA5941B7085FF005EB1C8 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		6A4CA5951B7085FF005EB1C8 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
-		6A4CB7131B733AFC0065F589 /* YZYPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZYPopoverViewController.h; sourceTree = "<group>"; };
-		6A4CB7141B733AFC0065F589 /* YZYPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZYPopoverViewController.m; sourceTree = "<group>"; };
+		6A4CB7131B733AFC0065F589 /* YZYPopoverDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZYPopoverDialogViewController.h; sourceTree = "<group>"; };
+		6A4CB7141B733AFC0065F589 /* YZYPopoverDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZYPopoverDialogViewController.m; sourceTree = "<group>"; };
 		6A58A1071B6B6D4300D105D9 /* MyPresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPresentationController.h; sourceTree = "<group>"; };
 		6A58A1081B6B6D4300D105D9 /* MyPresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPresentationController.m; sourceTree = "<group>"; };
 		6A58A10A1B6B71C200D105D9 /* MyDatePickerDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatePickerDialogViewController.h; sourceTree = "<group>"; };
@@ -245,26 +239,6 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
-		6A488C391B745B390061AAA4 /* YZYTableViewManager */ = {
-			isa = PBXGroup;
-			children = (
-				6A488C3A1B745B870061AAA4 /* YZYTableViewManager.h */,
-				6A488C3B1B745B870061AAA4 /* YZYTableViewManager.m */,
-				6A488C401B745F460061AAA4 /* YZYTableView.h */,
-				6A488C411B745F460061AAA4 /* YZYTableView.m */,
-			);
-			name = YZYTableViewManager;
-			sourceTree = "<group>";
-		};
-		6A488C431B7488660061AAA4 /* DBManager */ = {
-			isa = PBXGroup;
-			children = (
-				6A3CCACE1B6F54CE00B968C7 /* DBManager.h */,
-				6A3CCACF1B6F54CE00B968C7 /* DBManager.m */,
-			);
-			name = DBManager;
-			sourceTree = "<group>";
-		};
 		6A4CA5891B7085A6005EB1C8 /* EGO */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,8 +277,8 @@
 			children = (
 				6A58A1071B6B6D4300D105D9 /* MyPresentationController.h */,
 				6A58A1081B6B6D4300D105D9 /* MyPresentationController.m */,
-				6A4CB7131B733AFC0065F589 /* YZYPopoverViewController.h */,
-				6A4CB7141B733AFC0065F589 /* YZYPopoverViewController.m */,
+				6A4CB7131B733AFC0065F589 /* YZYPopoverDialogViewController.h */,
+				6A4CB7141B733AFC0065F589 /* YZYPopoverDialogViewController.m */,
 			);
 			name = YZYPopoverDialog;
 			sourceTree = "<group>";
@@ -312,9 +286,9 @@
 		6A58A1061B6B6D1900D105D9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				6A488C431B7488660061AAA4 /* DBManager */,
 				6A4CB7121B733A890065F589 /* YZYPopoverDialog */,
-				6A488C391B745B390061AAA4 /* YZYTableViewManager */,
+				6A3CCACE1B6F54CE00B968C7 /* DBManager.h */,
+				6A3CCACF1B6F54CE00B968C7 /* DBManager.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -436,7 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A4CB7151B733AFC0065F589 /* YZYPopoverViewController.m in Sources */,
+				6A4CB7151B733AFC0065F589 /* YZYPopoverDialogViewController.m in Sources */,
 				6A4CA58C1B7085CE005EB1C8 /* EGORefreshTableHeaderView.m in Sources */,
 				6A401D241B661199003E35F8 /* CrimeTableViewCell.m in Sources */,
 				6A401CF11B6607CC003E35F8 /* ViewController.m in Sources */,
@@ -444,13 +418,11 @@
 				6A401CEE1B6607CC003E35F8 /* AppDelegate.m in Sources */,
 				6A401D211B660CE5003E35F8 /* NSObject+MyApplication.m in Sources */,
 				6A401D1B1B660990003E35F8 /* MyCrime.m in Sources */,
-				6A488C421B745F460061AAA4 /* YZYTableView.m in Sources */,
 				6A401CEB1B6607CC003E35F8 /* main.m in Sources */,
 				6AF6B4A91B71FCD3008CAC21 /* NewCrimeViewController.m in Sources */,
 				6A3CCAD01B6F54CE00B968C7 /* DBManager.m in Sources */,
 				6A401D271B661FA6003E35F8 /* DetailViewController.m in Sources */,
 				6A58A10C1B6B71C200D105D9 /* MyDatePickerDialogViewController.m in Sources */,
-				6A488C3C1B745B870061AAA4 /* YZYTableViewManager.m in Sources */,
 				6A58A1091B6B6D4300D105D9 /* MyPresentationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

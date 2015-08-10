@@ -7,13 +7,17 @@
 //
 
 #import "ViewController.h"
+#import "NSObject+MyApplication.h"
+#import "CrimeTableViewCell.h"
+#import "DetailViewController.h"
+#import "EGORefreshTableHeaderView.h"
+#import "NewCrimeViewController.h"
 
-@interface ViewController () <NewCrimeDelegate, YZYTableViewDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate, NewCrimeDelegate>
 
-@property (weak, nonatomic) IBOutlet YZYTableView *tableView;
-@property (strong, nonatomic) YZYTableViewManager *manager;
-
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSIndexPath *selectedItem;
+@property (strong, nonatomic) EGORefreshTableHeaderView *headView;
 
 @property (strong, nonatomic) NSMutableArray *delItems;
 @property (strong, nonatomic) NSMutableArray *delCrimes;
@@ -60,12 +64,14 @@
 }
 
 #pragma mark - task methods
-- (id)yzyTableViewOnRefrehDoing:(YZYTableView *)tableView {
+- (void) test{
     [NSThread sleepForTimeInterval:1];
-    return nil;
+    [self performSelectorOnMainThread:@selector(test2) withObject:nil waitUntilDone:YES];
 }
-- (void)yzyTableView:(YZYTableView *)tableView onRefreshDoneWithResult:(id)result {
-    
+
+- (void) test2{
+    [self.tableView reloadData];
+    [self.headView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 }
 
 #pragma mark - table delegate
@@ -87,27 +93,50 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView == self.tableView) {
-        if (!self.tableView.editing) {
-            self.selectedItem = indexPath;
-            DetailViewController *controller =(DetailViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
-            controller.currentItem = indexPath;
-            [self.navigationController pushViewController:controller animated:YES];
-        } else {
-            [self.delItems addObject:indexPath];
-            [self.delCrimes addObject:[self.app.crimeLab objectAtIndex:indexPath.row]];
-        }
+    if (!self.tableView.editing) {
+        self.selectedItem = indexPath;
+        DetailViewController *controller =(DetailViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+        controller.currentItem = indexPath;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else {
+        [self.delItems addObject:indexPath];
+        [self.delCrimes addObject:[self.app.crimeLab objectAtIndex:indexPath.row]];
     }
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.tableView.editing) {
+        return UITableViewCellEditingStyleInsert|UITableViewCellEditingStyleDelete;
+    } else
+        return UITableViewCellEditingStyleDelete;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [NSString stringWithFormat:@"删除"];
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.tableView) {
-        if (editingStyle == UITableViewCellEditingStyleDelete) {
-            [self.app.crimeLab removeObjectAtIndex:indexPath.row];
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.app savaDatatoFile];
-        }
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.app.crimeLab removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        [self.app savaDatatoFile];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        
     }
+}
+
+#pragma mark - scroll delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.headView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [self.headView egoRefreshScrollViewDidEndDragging:scrollView];
 }
 
 
@@ -118,6 +147,18 @@
     }
 }
 
+#pragma mark - refresh head delegate
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view {
+    return NO;
+}
+
+- (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view {
+    return [NSDate date];
+}
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view {
+    [self performSelectorInBackground:@selector(test) withObject:nil];
+}
 
 #pragma mark - view events
 - (void)viewDidLoad {
@@ -131,13 +172,6 @@
 
     self.delItems = [[NSMutableArray alloc] init];
     self.delCrimes = [[NSMutableArray alloc] init];
-    
-    self.tableView.showHeaderView = YES;
-    self.tableView.yzyDelegate = self;
-    
-    self.manager = [[YZYTableViewManager alloc] init];
-    [self.manager setTableView:self.tableView forKey:@"test"];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -154,5 +188,15 @@
     }
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    if (!self.headView) {
+        self.headView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, -self.tableView.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height)];
+        self.headView.delegate = self;
+        [self.tableView addSubview:self.headView];
+    }
+    
+}
 
 @end
