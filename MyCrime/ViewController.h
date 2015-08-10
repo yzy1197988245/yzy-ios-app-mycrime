@@ -7,11 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NSObject+MyApplication.h"
-#import "CrimeTableViewCell.h"
-#import "DetailViewController.h"
-#import "NewCrimeViewController.h"
-#import "YZYTableViewManager.h"
 
 @interface ViewController : UIViewController
 

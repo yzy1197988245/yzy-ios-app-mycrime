@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MyCrime.h"
 
 @interface DetailViewController : UIViewController <UIPopoverPresentationControllerDelegate>
 
