@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSMutableArray *delItems;
 @property (strong, nonatomic) NSMutableArray *delCrimes;
 
+@property (strong, nonatomic) NSMutableArray *items;
+
 @end
 
 @implementation ViewController
@@ -59,6 +61,31 @@
     [self.app savaDatatoFile];
 }
 
+- (void)createCrimes {
+    NSMutableArray *more = [[NSMutableArray alloc] init];
+    for (int i=0; i<2; i++) {
+        MyCrime *crime = [[MyCrime alloc] init];
+        crime.title = [NSString stringWithFormat:@"test #%@",@(i)];
+        crime.isChecked = NO;
+        crime.date = [NSDate date];
+        [more addObject:crime];
+    }
+    [self performSelectorOnMainThread:@selector(addDataToCrimeLab:) withObject:more waitUntilDone:NO];
+}
+
+- (void)addDataToCrimeLab:(NSMutableArray *)data {
+    for (int i=0; i<data.count; i++) {
+        [self.app.crimeLab addObject:[data objectAtIndex:i]];
+    }
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    for (int i=0; i<data.count; i++) {
+        NSIndexPath *newPath = [NSIndexPath indexPathForRow:[self.app.crimeLab indexOfObject:[data objectAtIndex:i]] inSection:0];
+        [items addObject:newPath];
+    }
+//    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[items objectAtIndex:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView insertRowsAtIndexPaths:items withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 #pragma mark - task methods
 - (id)yzyTableViewOnRefrehDoing:(YZYTableView *)tableView {
     [NSThread sleepForTimeInterval:1];
@@ -70,10 +97,21 @@
 
 #pragma mark - table delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.app.crimeLab.count;
+    if (tableView == self.tableView) {
+        return self.app.crimeLab.count+1;
+    } else {
+        return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == self.app.crimeLab.count) {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"loadmore"];
+        cell.textLabel.text = @"loadmore...";
+        return cell;
+    }
+    
     CrimeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.crime = [self.app.crimeLab objectAtIndex:indexPath.row];
 
@@ -88,6 +126,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.tableView) {
+        if (indexPath.row == self.app.crimeLab.count) {
+            [self performSelectorInBackground:@selector(createCrimes) withObject:nil];
+            return;
+        }
         if (!self.tableView.editing) {
             self.selectedItem = indexPath;
             DetailViewController *controller =(DetailViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
@@ -137,7 +179,7 @@
     
     self.manager = [[YZYTableViewManager alloc] init];
     [self.manager setTableView:self.tableView forKey:@"test"];
-    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{

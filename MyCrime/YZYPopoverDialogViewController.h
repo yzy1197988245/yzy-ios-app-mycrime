@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MyPresentationController.h"
 
-@interface YZYPopoverViewController : UIViewController
-
-@property (nonatomic, assign) YZYPopoverViewPresentationStyle presentationStyle;
+@interface YZYPopoverDialogViewController : UIViewController
 
 @end

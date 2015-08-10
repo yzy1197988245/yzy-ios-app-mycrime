@@ -46,6 +46,13 @@
     controller.modalPresentationStyle = UIModalPresentationCustom;
     controller.dateNow = self.crime.date;
     controller.dateChangedDelegate = self;
+    
+    CGFloat height = self.view.frame.size.height;
+    CGFloat width = self.view.frame.size.height;
+    
+    CGRect frame = CGRectMake((width-400)/2, (height-300)/2, 400, 300);
+    controller.view.frame = frame;
+    
     [self presentViewController:controller animated:YES completion:nil];
 }
 

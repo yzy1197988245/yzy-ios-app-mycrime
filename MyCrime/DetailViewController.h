@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <UIPopoverPresentationControllerDelegate>
 
 @property (weak, nonatomic) NSIndexPath *currentItem;
 
