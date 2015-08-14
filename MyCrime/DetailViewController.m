@@ -44,7 +44,6 @@
 
 #pragma mark - assert methods
 
-
 #pragma mark - collection delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.app.crimeLab.count;
@@ -63,7 +62,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"updateView" object:indexPath];
     }
 }
-
 
 #pragma mark - view events
 - (void)viewDidLoad {

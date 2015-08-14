@@ -18,7 +18,6 @@
 
 @end
 
-
 @protocol MyDateChangedDelegate <NSObject>
 
 - (void)onDateChanged:(NSDate *)date;

@@ -19,7 +19,6 @@
 - (IBAction)titleChanged:(UITextField *)sender;
 - (IBAction)checkChanged:(UISwitch *)sender;
 
-
 @end
 
 @implementation DetailCell
@@ -70,8 +69,5 @@
 - (IBAction)checkChanged:(UISwitch *)sender {
     self.crime.isChecked = sender.isOn;
 }
-
-
-
 
 @end

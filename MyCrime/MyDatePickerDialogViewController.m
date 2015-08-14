@@ -44,7 +44,6 @@
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
-
 - (IBAction)todayButtonClicked:(UIButton *)sender {
     self.dateNow = [NSDate date];
     self.datePicker.date = [NSDate date];

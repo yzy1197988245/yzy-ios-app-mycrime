@@ -13,18 +13,24 @@
 #import "EGORefreshTableHeaderView.h"
 #import "NewCrimeViewController.h"
 
+typedef enum {
+    STATUS_NORMAL = 0,
+    STATUS_LOADING,
+    STATUS_EDITING
+}STATUS;
+
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, NewCrimeDelegate>
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSIndexPath *selectedItem;
-@property (strong, nonatomic) EGORefreshTableHeaderView *headView;
-
-@property (strong, nonatomic) NSMutableArray *delItems;
-@property (strong, nonatomic) NSMutableArray *delCrimes;
 
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *bottomIndicator;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong, nonatomic) EGORefreshTableHeaderView *headView;
+@property (strong, nonatomic) NSIndexPath *selectedItem;
+@property (strong, nonatomic) NSMutableArray *delItems;
+@property (strong, nonatomic) NSMutableArray *delCrimes;
+
+@property (assign, nonatomic) STATUS status;
 
 @end
 
@@ -35,8 +41,12 @@
     controller.delegate = self;
     controller.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:controller animated:YES completion:nil];
-    
-//    [self performSelectorInBackground:@selector(createCrimes) withObject:nil];
+}
+
+- (void)onCrimeCreated:(MyCrime *)crime {
+    [self.app.crimeLab addObject:crime];
+    [self.tableView reloadData];
+    [self.app savaDatatoFile];
 }
 
 - (void)deleteAction {
@@ -59,21 +69,16 @@
     }
 }
 
-- (void)onCrimeCreated:(MyCrime *)crime {
-    [self.app.crimeLab addObject:crime];
-    [self.tableView reloadData];
-    [self.app savaDatatoFile];
-}
-
 - (void)createCrimes {
     NSMutableArray *data = [[NSMutableArray alloc] init];
-    for (int i=0; i<3; i++) {
+    for (int i=0; i<1; i++) {
         MyCrime *crime = [[MyCrime alloc] init];
         crime.title = [NSString stringWithFormat:@"test #%@", @(i)];
         crime.isChecked = NO;
         crime.date = [NSDate date];
         [data addObject:crime];
     }
+    [NSThread sleepForTimeInterval:0.5];
     [self performSelectorOnMainThread:@selector(addCrimestoCrimeLab:) withObject:data waitUntilDone:NO];
 }
 
@@ -88,36 +93,56 @@
     [self.app savaDatatoFile];
 }
 
-#pragma mark - task methods
-- (void) test{
-    [NSThread sleepForTimeInterval:1];
-    [self performSelectorOnMainThread:@selector(test2) withObject:nil waitUntilDone:YES];
+#pragma mark - assert methods
+- (void)setStatus:(STATUS)status {
+    _status = status;
+    switch (status) {
+        case STATUS_NORMAL:
+            self.bottomIndicator.hidden = YES;
+            self.bottomLabel.text = @"上拉加载更多";
+            break;
+            
+        case STATUS_EDITING:
+            self.bottomIndicator.hidden = YES;
+            self.bottomLabel.text = @"正在编辑";
+            break;
+            
+        case STATUS_LOADING:
+            self.bottomIndicator.hidden = NO;
+            self.bottomLabel.text = @"正在加载";
+            break;
+            
+        default:
+            break;
+    }
 }
 
-- (void) test2{
+#pragma mark - task methods
+- (void) test {
+    [NSThread sleepForTimeInterval:1];
+    [self performSelectorOnMainThread:@selector(test2) withObject:nil waitUntilDone:NO];
+}
+
+- (void) test2 {
     [self.tableView reloadData];
     [self.headView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 }
 
 #pragma mark - table delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.app.crimeLab.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CrimeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.crime = [self.app.crimeLab objectAtIndex:indexPath.row];
-
-    if ([self.delItems indexOfObject:indexPath] == NSNotFound) {
-        return cell;
-    } else {
+    if ([self.delItems indexOfObject:indexPath] != NSNotFound) {
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        return cell;
     }
-    
+    return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.tableView.editing) {
         self.selectedItem = indexPath;
         DetailViewController *controller =(DetailViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
@@ -126,6 +151,13 @@
     } else {
         [self.delItems addObject:indexPath];
         [self.delCrimes addObject:[self.app.crimeLab objectAtIndex:indexPath.row]];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.tableView.editing) {
+        [self.delItems removeObject:indexPath];
+        [self.delCrimes removeObject:[self.app.crimeLab objectAtIndex:indexPath.row]];
     }
 }
 
@@ -159,22 +191,18 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.headView egoRefreshScrollViewDidScroll:scrollView];
     
-    if ((scrollView.contentOffset.y - self.tableView.rowHeight * 1) > (scrollView.contentSize.height - scrollView.frame.size.height) && scrollView.contentOffset.y > 0) {
+    if ((scrollView.contentOffset.y - self.tableView.rowHeight * 1) > (scrollView.contentSize.height - scrollView.frame.size.height) && scrollView.contentOffset.y > 0 && self.status == STATUS_NORMAL) {
         self.bottomLabel.text = @"松开刷新";
-    } else {
-        self.bottomLabel.text = @"上拉加载更多";
     }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self.headView egoRefreshScrollViewDidEndDragging:scrollView];
     
-    if ((scrollView.contentOffset.y - self.tableView.rowHeight * 1)  > (scrollView.contentSize.height - scrollView.frame.size.height) && scrollView.contentOffset.y > 0) {
+    if ((scrollView.contentOffset.y - self.tableView.rowHeight * 1) > (scrollView.contentSize.height - scrollView.frame.size.height) && scrollView.contentOffset.y > 0 && self.status == STATUS_NORMAL) {
         [self performSelectorInBackground:@selector(createCrimes) withObject:nil];
     }
-    
 }
-
 
 #pragma mark - notification methods
 - (void)updateView:(NSNotification *)notification {
@@ -185,12 +213,16 @@
 
 #pragma mark - refresh head delegate
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view {
-    return NO;
+    if (self.status == STATUS_LOADING) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 - (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view {
     return [NSDate date];
-}
+} 
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view {
     [self performSelectorInBackground:@selector(test) withObject:nil];
@@ -208,7 +240,6 @@
 
     self.delItems = [[NSMutableArray alloc] init];
     self.delCrimes = [[NSMutableArray alloc] init];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -227,13 +258,12 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    
+
     if (!self.headView) {
         self.headView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, -self.tableView.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height)];
         self.headView.delegate = self;
         [self.tableView addSubview:self.headView];
     }
-    
 }
 
 @end

@@ -83,7 +83,6 @@
     [self.dateButton setTitle:[dateFormatter stringFromDate:self.crime.date] forState:UIControlStateNormal];
 
     [self.titleTextField becomeFirstResponder];
-    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
